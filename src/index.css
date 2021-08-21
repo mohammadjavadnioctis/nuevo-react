@@ -11,3 +11,176 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.form-header{
+  width: 80%;
+  height: 10vh;
+  /* border: 3px solid orangered; */
+  margin: 0.3rem auto;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 10vh;
+  margin: 0 auto;
+}
+
+.nav-bar{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #67b854;
+    border-bottom: 1px solid #67b854;
+
+
+
+}
+
+
+.form-select{
+  height: 50%;
+}
+
+.top-button{
+  width: 100%;
+}
+
+
+.top-form-company{
+  height: 100%;
+}
+
+.top-form{
+  height: 100%;
+    /* border: 3px solid yellow; */
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    column-gap: 2rem;
+    padding: 1rem 1rem;
+}
+
+
+.MainBodyContainer{
+  margin: 0 auto;
+    width: 80%;
+    /* border: 3px solid orange; */
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    background-color: #fff;
+    box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+    border-color: rgba(223,225,229,0);
+}
+
+.cards-container{
+
+  
+  /* border: 3px solid yellow; */
+
+}
+
+.sidebar{
+  height: 80vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  /* border: 3px solid blue; */
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+    /* border-color: rgba(223,225,229,0); */
+}
+
+
+.sidebar-form *{
+  margin: 1rem 0;
+}
+
+
+
+
+.employee-card{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  /* border: 3px solid orangered; */
+  height: 30vh;
+  animation: fade-in ease-in-out 1s;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+    /* border-color: rgba(223,225,229,0); */
+    transition: transform 0.1s linear;
+  
+}
+
+.employee-card:hover{
+  transform: translateY(-20px);
+  z-index: 99;
+}
+
+
+.employee-card:nth-child(2){
+  animation-delay: 0.1s;
+}
+.employee-card:nth-child(3){
+  animation-delay: 0.2s;
+}
+.employee-card:nth-child(4){
+  animation-delay: 0.3s;
+}
+
+
+
+.employee-pic{
+  /* border: 3px solid green; */
+}
+
+.employee-info{
+  /* border: 3px solid indigo; */
+ max-height: 100%;
+ display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.employee-pic img{
+  width: 100%;
+  height: 100%;
+  -webkit-clip-path: circle(37% at 50% 50%);
+clip-path: circle(37% at 50% 50%);
+}
+  
+
+.Skeleton-card{
+
+}
+
+.circle{
+  margin: 0.5rem;
+}
+
+
+.s-title{
+  transform: translateY(10px);
+
+}
+
+@keyframes fade-in{
+  from{
+    transform: translateX(50%);
+    
+    opacity: 0}
+
+  to{
+    transform: translateX(0);
+    opacity: 1;}
+}

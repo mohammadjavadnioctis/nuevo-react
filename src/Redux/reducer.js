@@ -1,7 +1,7 @@
 
 const initState = {
     items : [],
-    loading: false,
+    loading: true,
     error: null
 }
 
