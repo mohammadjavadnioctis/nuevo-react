@@ -14,11 +14,12 @@ const EmployeeCard = () => {
     const [start, setStart] = useState(0)
     const [finish, setFinish] = useState(5)
     const observer = useRef
+    console.log('this is the employeeReducer =', state.employeesReducer)
 
     //intersection obsever
     const lastEmployee = useCallback(node => {
         console.log(node)
-        if(state.loading) return; 
+        if(state.employeesReducer.loading) return; 
         if(observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
 
@@ -33,7 +34,7 @@ const EmployeeCard = () => {
         })
         if(node) observer.current.observe(node)
 
-    }, [hasMore, state.loading] )
+    }, [hasMore, state.employeesReducer.loading] )
         
    
 
@@ -48,7 +49,7 @@ const EmployeeCard = () => {
 const renderCards = () =>{
     console.log('this is state',state)
 
-    if(state.loading){
+    if(state.employeesReducer.loading){
         return(
         <div>
            <SkeletonCard />
@@ -61,7 +62,7 @@ const renderCards = () =>{
     }
    
     
-    const firstFive = state.items.slice(start, finish)
+    const firstFive = state.employeesReducer.items.slice(start, finish)
     
 
 
