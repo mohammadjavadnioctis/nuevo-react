@@ -14,17 +14,15 @@ const EmployeeCard = () => {
     const [start, setStart] = useState(0)
     const [finish, setFinish] = useState(5)
     const observer = useRef
-    console.log('this is the employeeReducer =', state.employeesReducer)
+    const [firstRender, setFirstRender] = useState(false)
 
     //intersection obsever
     const lastEmployee = useCallback(node => {
-        console.log(node)
         if(state.employeesReducer.loading) return; 
         if(observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
 
             if(entries[0].isIntersecting){
-                console.log('element is visible')
                 setTimeout( () => {
                     setFinish(prevFinish => prevFinish +5)
                 } ,500)
@@ -47,7 +45,6 @@ const EmployeeCard = () => {
     }, [])
 
 const renderCards = () =>{
-    console.log('this is state',state)
 
     if(state.employeesReducer.loading){
         return(
@@ -61,15 +58,22 @@ const renderCards = () =>{
        
     }
    
-    
-    const firstFive = state.employeesReducer.items.slice(start, finish)
+    if(firstRender){
+        var firstFive = state.searchReducer.items.slice(start, finish)
+    }
+    if(!firstRender){
+        var firstFive = state.employeesReducer.items.slice(start, finish)
+        setFirstRender(true)
+    }
+    console.log('the employee component is rerendered')
     
 
 
     return firstFive.map((el, index) => {
+        console.log(index)
         if(firstFive.length === index + 1){
             return (
-                <div ref={lastEmployee} className='employee-card'>
+                <div ref={lastEmployee} className='employee-card' key={el.id}>
                     <div className="employee-pic">
                         <img src={"https://images.unsplash.com/photo-1513789181297-6f2ec112c0bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"} alt="" />
                     </div>
@@ -83,7 +87,7 @@ const renderCards = () =>{
                     )
         }else{
             return (
-                <div className='employee-card'>
+                <div className='employee-card' key={el.id}>
                     <div className="employee-pic">
                         <img src={"https://images.unsplash.com/photo-1513789181297-6f2ec112c0bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"} alt="" />
                     </div>

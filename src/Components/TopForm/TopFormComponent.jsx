@@ -3,30 +3,37 @@ import { Form } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import  Button  from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchSearchResults } from './search-action'
 
 
 const TopFormComponent = () => {
     const dispatch = useDispatch()
     const state = useSelector((state) => state)
     const [queryString, setqueryString] = useState()
+    
 
-    function searchInputChanged (queryString){
-       let savedQueryString = queryString
-        setqueryString((prevState) => {
-            console.log('this is state from TopFormComponent', state)
-             console.log('this is the queryString', queryString)
-             
-        })    
+    function searchInputChanged (queryStringTarget){
+       setqueryString(queryStringTarget)
+        
+          
     }
+
+    function handleSubmit (e) {
+        e.preventDefault()
+        console.log('State Before the dispatch', state )
+        dispatch(fetchSearchResults(queryString))
+        console.log('state after Dispatch', state )
+      
+    } 
 
 
     return (
        
                     
-                <Form className="top-form">
+                <Form className="top-form" onSubmit={handleSubmit}>
 
         
-        <Form.Control size="lg" type="text" placeholder="Name" className="top-form-name" onChange={ ChangeEvent => searchInputChanged(ChangeEvent.target.value) }/>
+        <Form.Control size="lg" type="text" placeholder="Search For Anything..." className="top-form-name" onChange={ ChangeEvent => searchInputChanged(ChangeEvent.target.value) }/>
             <Form.Select aria-label="Default select example" className="top-form-company">
                 <option>Company Name</option>
                 <option value="1">Trendyol</option>
@@ -35,7 +42,7 @@ const TopFormComponent = () => {
             </Form.Select>
             
            
-             <Button variant="outline-primary" className="top-button">
+             <Button type="submit"variant="outline-primary" className="top-button">
                  Filter
             </Button>{' '}
         
