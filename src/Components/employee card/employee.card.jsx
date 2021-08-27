@@ -42,7 +42,9 @@ const EmployeeCard = () => {
          
           
         
-    }, [])
+    }, [state.searchReducer.item])
+
+
 
 const renderCards = () =>{
 
@@ -58,19 +60,32 @@ const renderCards = () =>{
        
     }
    
-    if(firstRender){
-        var firstFive = state.searchReducer.items.slice(start, finish)
-    }
-    if(!firstRender){
-        var firstFive = state.employeesReducer.items.slice(start, finish)
-        setFirstRender(true)
-    }
+
+if (!(Object.keys(state.searchReducer.items).length === 0)){
+    var firstFive = state.searchReducer.items.slice(start, finish)
+    console.log('first if', firstFive)
+    console.log(Object.keys(state.searchReducer.items).length === 0)
+}
+else{
+    var firstFive = state.employeesReducer.items.slice(start, finish)
+    console.log('second if ', firstFive)
+    // }
+}
+    // if(firstRender){
+    //     var firstFive = state.searchReducer.items.slice(start, finish)
+    //     console.log('first if', firstFive)
+    // }
+    // if(!firstRender){
+    //     var firstFive = state.employeesReducer.items.slice(start, finish)
+    //     setFirstRender(true)
+    //     console.log('second if ', firstFive)
+    // }
     console.log('the employee component is rerendered')
     
 
 
     return firstFive.map((el, index) => {
-        console.log(index)
+        // console.log(index)
         if(firstFive.length === index + 1){
             return (
                 <div ref={lastEmployee} className='employee-card' key={el.id}>
